@@ -5,7 +5,7 @@ A repo for packages written in SPWN
 ## Arc
 Arc is not ready yet
 
-## Ash
+## [Ash](https://github.com/arc-spwn/ash)
 - Go to the directory where Ash is located
 - Place desired package in `commands` directory
 - Repeat step 1
