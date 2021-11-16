@@ -2,32 +2,57 @@ extract $
 
 extract import "../utils.spwn"
 
-arc_logo = "
-@@@&@&@@&@@&@&@@&@@&@&@@&@@&@&@@&@@&@&@@
-@@@@&@@@@&@@@@@&@@@@@@@@@@@@@@@@@@@@@@@&
-@@@@@@@@@@@@@@@@@@@&@@@@&@@@@&@@@@@&@@@@
-@@@@&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-&@@@@@@@&@@@@@@@&@@@@@@@&@@@@@@@&@@@@@@@
-@&@@&@@@@@@@&@@@@@@@&@@&@&@@&@@@@@@@&@@@
-&@@&@&@@&@@&@(((((((/&@@&(**@&@@&@@&@&@@
-@&@@&@@&@&@@(((&@&@&/////**@&@@&@&@@&@@&
-@@@@@@@@@@@@@@@@@@@&@@@@&@@@@&@@@@@&@@@@
-@@@@&@@@@&@@@@@&@@@@@@@@@@@@@@@@@@@@@@@&
-@@@@@@@@@@@@@@@@@@@@@@@@&@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@&@@@@@@@&@@@@@@@&@@@@@@@&@@@@@@@&@@@
-&@@&@&@@&@@@@@@@&@@@@&@@&@@@@@@@&@@@@@@@
-@&@@&@@&@&@@&@@&@&@@&@@&@&@@&@@&@&@@&@@&
+coolerarc_logo = "
+                                        
+                                        
+                                        
+                                        
+                                        
+    IUseArcB          twIU
+  seArcBtwIUse        ArcB
+ twIUseArcBtwIUs     eArcB
+twIUs      eArcBtwIUseArcB
+twIUs       eArcBtwIUseAr
+ cBt           wIUseArc
+                                        
+                                        
+                                        
+                                        
+                                        
+                                     
 "
+
+arc_logo = "
+                                        
+                                        
+                                        
+                                        
+                                        
+             .'''..       ..            
+           .;lc::lc,..   .:,.           
+           ;o:.  .;cl:,',::.            
+           .'.     .',,;,'.             
+                                        
+                                        
+                                        
+                                        
+                                        
+"
+let curLogo = arc_logo;
 
 neofetch = (context){
     extract context
 
     let logo_done = false
     let stats_done = false
-
-    let logo = arc_logo.split("\n")
+	
+	if(args.length > 0 && args[0] == "cool" ){
+		curLogo = coolerarc_logo;
+	}
+	else{
+		curLogo = arc_logo;
+	}
+    let logo = curLogo.split("\n")
     logo.shift() // remove first newline
 
     let stats = [
@@ -36,8 +61,9 @@ neofetch = (context){
         // "OS: Arc {}",
         // "Kernel: {}",
         "Uptime: {} seconds".fmt($.time() - start_time),
-        "Packages: {} (ash)".fmt([commands.commands.values().length]),
-        // "Shell: {}",
+        "Packages: {} ".fmt([commands.commands.values().length]),
+		// "Shell: {}",
+        "Shell: Ash ",
         // "Terminal: {}",
         // "CPU: {}",
         // "GPU: {}",
@@ -45,6 +71,11 @@ neofetch = (context){
     ]
 
     let i = 0;
+	/*let chance = random(1, 20);
+	
+	if(chance >= 5){
+		arc_logo = coolerarc_logo;
+	}*/
 
     while !logo_done || !stats_done {
         let strip = ""
