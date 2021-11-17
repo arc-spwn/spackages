@@ -1,0 +1,17 @@
+extract $
+
+eval = (code: @string){
+    writefile("specky_eval.spwn", code)
+    return import "specky_eval.spwn"
+}
+
+// can be removed once the "import(variable)" syntax will be implemented
+specky_import = (module: @string){
+    return eval('return import "commands/{}"\n'.fmt(module))
+}
+
+return {
+    eval,
+    specky_import,
+    start_time: $.time(),
+}
